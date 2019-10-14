@@ -1,13 +1,13 @@
 #include <ESP8266WiFi.h>
  
-const char* ssid     = "RVS";          //enter your wifi name 
-const char* password = "rohit123";                 // your wifi password
+const char* ssid     = "AdityaGiradkar";          //enter your wifi name 
+const char* password = "Aditya@123";                 // your wifi password
 const char* host = "scriabin-searches.000webhostapp.com";  //website url
 
 
 void setup() {
   Serial.begin(9600);
-  delay(100);
+  delay(500);
   
   Serial.println();
   Serial.println();
@@ -16,12 +16,12 @@ void setup() {
   randomSeed(10);
   WiFi.begin(ssid, password); 
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
+    delay(400);
     Serial.print(".");
   }
  
   Serial.println("");
-  Serial.println("WiFi connected");  
+  Serial.println("WiFi connected, well");  
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
   Serial.print("Netmask: ");          // range of total ip addresses that can be used in network 
@@ -57,7 +57,7 @@ void loop() {
   client.print(String("GET ") + url + " HTTP/1.1\r\n" +
                "Host: " + host + "\r\n" + 
                "Connection: close\r\n\r\n");                  //uploading data to cloud
-  delay(500);
+  delay(1000);
   
   while(client.available()){
     String line = client.readStringUntil('\r');
@@ -66,5 +66,5 @@ void loop() {
   
   Serial.println();
   Serial.println("closing connection");
-  delay(3000);
+  delay(2000);
 }
