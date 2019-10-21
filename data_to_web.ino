@@ -1,7 +1,9 @@
 #include <ESP8266WiFi.h>
  
-const char* ssid     = "AdityaGiradkar";          //enter your wifi name 
-const char* password = "Aditya@123";                 // your wifi password
+
+const char* ssid     = "harsh@7";          //enter your server name 
+const char* password = "12345678";                 // your server password
+
 const char* host = "scriabin-searches.000webhostapp.com";  //website url
 
 
@@ -24,10 +26,10 @@ void setup() {
   Serial.println("WiFi connected, well");  
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
-  Serial.print("Netmask: ");          // range of total ip addresses that can be used in network 
+  Serial.print("Netmask: ");          
   Serial.println(WiFi.subnetMask());
-  Serial.print("Gateway: ");          // gateway ip is an access point which connected devices uses to
-  Serial.println(WiFi.gatewayIP());       // send data to internet or other device connected on that network
+  Serial.print("Gateway: ");          
+  Serial.println(WiFi.gatewayIP());       
 }
 
 void loop() {
@@ -56,8 +58,11 @@ void loop() {
   
   client.print(String("GET ") + url + " HTTP/1.1\r\n" +
                "Host: " + host + "\r\n" + 
+
                "Connection: close\r\n\r\n");                  //uploading data to cloud
   delay(1000);
+
+
   
   while(client.available()){
     String line = client.readStringUntil('\r');
@@ -65,6 +70,9 @@ void loop() {
   }
   
   Serial.println();
+
   Serial.println("closing connection");
   delay(2000);
+
+
 }
